@@ -1,14 +1,3 @@
-#-------------------------------------------------------------------------------
-# Name:        module1
-# Purpose:
-#
-# Author:      Jurong
-#
-# Created:     15/07/2015
-# Copyright:   (c) Jurong 2015
-# Licence:     <your licence>
-#-------------------------------------------------------------------------------
-
 import csv, math, sys
 
 def getSimStats(ifile, ofile):

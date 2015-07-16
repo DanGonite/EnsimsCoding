@@ -1,11 +1,11 @@
-import csv, math, sys
+import csv, math, sys   # Imports necessary modules
 
 def getSimStats(ifile, ofile):
-    minlist = ["Min", ""]
-    maxlist = ["Max", ""]
-    meanlist = ["Mean", ""]
-    stddevlist = ["Standard Deviation", ""]
-    headlist = []
+    minlist = ["Min", ""]   # Creates the list of minimum values
+    maxlist = ["Max", ""]   # Creates the list of maximum values
+    meanlist = ["Mean", ""]     # Creates the list of mean values
+    stddevlist = ["Standard Deviation", ""]     # Creates the list of standard deviation values
+    headlist = []   # Creates the header row
 
     with open(ifile, 'rb') as csvfile:   # Opens file as "read-able binary"
         reader = list(csv.reader(csvfile))  # Reads the file as a list
@@ -23,15 +23,15 @@ def getSimStats(ifile, ofile):
             try:
                 minlist.append(min(value))  # Calculates the minimum value in the "value" list and adds it to "minlist"
                 maxlist.append(max(value))  # Calculates the maximum value in the "value" list and adds it to "maxlist"
-                mean = 0
-                for item in value:
-                    mean += item
+                mean = 0    # Sets mean as 0
+                for item in value:  # Loops through items in "value
+                    mean += item    # Adds "item" to "mean"
                 mean /= len(value)   # Adds each item in the "value" list to "mean" and divides "mean" by the number of values that were added
                 meanlist.append(mean)   # Adds "mean" to the list of means
-                sumsq = 0
-                for i in range(len(value)):
-                	sumsq += (value[i] - mean) **2
-                stddevlist.append(math.sqrt(sumsq/(len(value)-1)))
+                sumsq = 0   # Sets "sumsq" to 0
+                for i in range(len(value)):     # Loops through numbers until it gets to the length of "value"
+                	sumsq += (value[i] - mean) **2     # Adds the square of the difference between the "i"th value of value and the mean of value to "sumsq"
+                stddevlist.append(math.sqrt(sumsq/(len(value)-1)))  # Adds the square root of "sumsq" divided by the length of "value" minus 1 to "stddevlist"
             except ValueError:  # Checks for an error
                 pass
         minlist[2] = "" # Removes the 3rd entry (Job_Id)

@@ -12,7 +12,7 @@
 import csv
 
 n=0
-y = 17
+y = 19
 minlist = ["Min"]
 maxlist = ["Max"]
 meanlist = ["Mean"]
@@ -28,11 +28,10 @@ with open('F:\Things\Programming\Ensims Coding\SimResults.csv', 'rb') as csvfile
             if n > 18:
                 break
             try:
-                data = float(row[0])
+                data = float(row[n])
                 value.append(data)
-                break
             except ValueError:
-                n += 1
+                pass
         try:
             minlist.append(min(value))
             maxlist.append(max(value))
@@ -43,7 +42,7 @@ with open('F:\Things\Programming\Ensims Coding\SimResults.csv', 'rb') as csvfile
             meanlist.append(mean)
         except ValueError:
             pass
-with open('F:\Things\Programming\Ensims Coding\SimStats.csv', "w") as csvfile:
+with open('F:\Things\Programming\Ensims Coding\SimStats.csv', "wb") as csvfile:
     writer = csv.writer(csvfile, delimiter=",")
     writer.writerow(minlist)
     writer.writerow(maxlist)

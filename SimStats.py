@@ -12,7 +12,7 @@
 import csv
 
 n=0
-y = 19
+y = 0
 minlist = ["Min", ""]
 maxlist = ["Max", ""]
 meanlist = ["Mean", ""]
@@ -24,6 +24,7 @@ with open('run\SimResults.csv', 'rb') as csvfile:   # Change file path as necess
     reader = list(csv.reader(csvfile))
     for item in reader[0]:
         headlist.append(item)
+	y = len (headlist)
     for n in range(y):
         value = []
         csvfile.seek(0)
@@ -48,6 +49,7 @@ with open('run\SimResults.csv', 'rb') as csvfile:   # Change file path as necess
     minlist[2] = ""
     maxlist[2] = ""
     meanlist[2] = ""
+	
 with open('run\SimStats.csv', "wb") as csvfile: # Change file path as necessary
     writer = csv.writer(csvfile, delimiter=",")
     writer.writerow(headlist)

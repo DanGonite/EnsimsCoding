@@ -56,3 +56,4 @@ with open('F:\Things\Programming\Ensims Coding\SimStats.csv', "wb") as csvfile: 
     writer.writerow(meanlist)
 
 
+

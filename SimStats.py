@@ -9,11 +9,12 @@
 # Licence:     <your licence>
 #-------------------------------------------------------------------------------
 
-import csv, numpy
+import csv, math
 
 minlist = ["Min", ""]
 maxlist = ["Max", ""]
 meanlist = ["Mean", ""]
+stddevlist = ["Standard Deviation", ""]
 headlist = []
 
 with open('run\SimResults.csv', 'rb') as csvfile:   # Opens file as "read-able binary"
@@ -32,20 +33,29 @@ with open('run\SimResults.csv', 'rb') as csvfile:   # Opens file as "read-able b
         try:
             minlist.append(min(value))  # Calculates the minimum value in the "value" list and adds it to "minlist"
             maxlist.append(max(value))  # Calculates the maximum value in the "value" list and adds it to "maxlist"
-            mean = sum(value) / len(value)   # Adds each item in the "value" list to "mean" and divides "mean" by the number of values that were added
+            mean = 0
+            for item in value:
+                mean += item
+            mean /= len(value)   # Adds each item in the "value" list to "mean" and divides "mean" by the number of values that were added
             meanlist.append(mean)   # Adds "mean" to the list of means
+            sumsq = 0
+            for i in range(len(value)):
+            	sumsq += (value[i] - mean) **2
+            stddevlist.append(math.sqrt(sumsq/(len(value)-1)))
         except ValueError:  # Checks for an error
             pass
     minlist[2] = "" # Removes the 3rd entry (Job_Id)
     maxlist[2] = "" # Removes the 3rd entry (Job_Id)
     meanlist[2] = ""    # Removes the 3rd entry (Job_Id)
+    stddevlist[2] = ""    # Removes the 3rd entry (Job_Id)
 
 with open('run\SimStats.csv', "wb") as csvfile:     # Opens file as "write-able" binary
     writer = csv.writer(csvfile, delimiter=",")
     writer.writerow(headlist)   # }
-    writer.writerow(minlist)    # } Writes the data
-    writer.writerow(maxlist)    # } to a different document
+    writer.writerow(minlist)    # }
+    writer.writerow(maxlist)    # } Writes the data to a different document
     writer.writerow(meanlist)   # }
+    writer.writerow(stddevlist) # }
 
 
 

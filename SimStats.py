@@ -24,18 +24,15 @@ with open('F:\Things\Programming\Ensims Coding\SimResults.csv', 'rb') as csvfile
     for n in range(y):
         value = []
         csvfile.seek(0)
-        x=0
         for row in reader:
-            x+=1
-            while True:
-                if n > 18:
-                    break
-                try:
-                    data = float(row[0])
-                    value.append(data)
-                    break
-                except ValueError:
-                    n += 1
+            if n > 18:
+                break
+            try:
+                data = float(row[0])
+                value.append(data)
+                break
+            except ValueError:
+                n += 1
         try:
             minlist.append(min(value))
             maxlist.append(max(value))

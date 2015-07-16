@@ -9,7 +9,7 @@
 # Licence:     <your licence>
 #-------------------------------------------------------------------------------
 
-import csv
+import csv, numpy
 
 minlist = ["Min", ""]
 maxlist = ["Max", ""]
@@ -32,10 +32,7 @@ with open('run\SimResults.csv', 'rb') as csvfile:   # Opens file as "read-able b
         try:
             minlist.append(min(value))  # Calculates the minimum value in the "value" list and adds it to "minlist"
             maxlist.append(max(value))  # Calculates the maximum value in the "value" list and adds it to "maxlist"
-            mean = 0    # Sets "mean" as 0
-            for item in value:  # Loops through the "value" list
-                mean += item    # Adds each item in the "value" list to "mean"
-            mean /= len(value)  # Divides "mean" by the number of values that were added
+            mean = sum(value) / len(value)   # Adds each item in the "value" list to "mean" and divides "mean" by the number of values that were added
             meanlist.append(mean)   # Adds "mean" to the list of means
         except ValueError:  # Checks for an error
             pass

@@ -11,26 +11,19 @@
 
 import csv
 
-n=0
-y = 0
 minlist = ["Min", ""]
 maxlist = ["Max", ""]
 meanlist = ["Mean", ""]
 headlist = []
 
-with open('run\SimResults.csv', 'rb') as csvfile:   # Change file path as necessary
-    header = csv.Sniffer().has_header(csvfile.read())
-    csvfile.seek(0)
+with open('run\SimResults.csv', 'rb') as csvfile:
     reader = list(csv.reader(csvfile))
     for item in reader[0]:
         headlist.append(item)
-	y = len (headlist)
+	y = len(headlist)
     for n in range(y):
         value = []
-        csvfile.seek(0)
         for row in reader:
-            if n > 18:
-                break
             try:
                 data = float(row[n])
                 value.append(data)
@@ -49,8 +42,8 @@ with open('run\SimResults.csv', 'rb') as csvfile:   # Change file path as necess
     minlist[2] = ""
     maxlist[2] = ""
     meanlist[2] = ""
-	
-with open('run\SimStats.csv', "wb") as csvfile: # Change file path as necessary
+
+with open('run\SimStats.csv', "wb") as csvfile:
     writer = csv.writer(csvfile, delimiter=",")
     writer.writerow(headlist)
     writer.writerow(minlist)

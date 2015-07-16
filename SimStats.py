@@ -11,9 +11,6 @@
 
 import csv, math, sys
 
-ifile  = sys.argv[1]
-ofile = sys.argv[2]
-
 def getSimStats(ifile, ofile):
     minlist = ["Min", ""]
     maxlist = ["Max", ""]
@@ -60,3 +57,6 @@ def getSimStats(ifile, ofile):
         writer.writerow(maxlist)    # } Writes the data to a different document
         writer.writerow(meanlist)   # }
         writer.writerow(stddevlist) # }
+
+getSimStats(sys.argv[1], sys.argv[2])
+

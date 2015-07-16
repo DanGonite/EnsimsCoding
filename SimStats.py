@@ -13,10 +13,10 @@ import csv
 
 n=0
 y = 19
-minlist = ["Min", "", ""]
-maxlist = ["Max", "", ""]
-meanlist = ["Mean", "", ""]
-headlist = ["Statistics"]
+minlist = ["Min", ""]
+maxlist = ["Max", ""]
+meanlist = ["Mean", ""]
+headlist = []
 
 with open('F:\Things\Programming\Ensims Coding\SimResults.csv', 'rb') as csvfile:   # Change file path as necessary
     header = csv.Sniffer().has_header(csvfile.read())
@@ -45,9 +45,9 @@ with open('F:\Things\Programming\Ensims Coding\SimResults.csv', 'rb') as csvfile
             meanlist.append(mean)
         except ValueError:
             pass
-    minlist[3] = ""
-    maxlist[3] = ""
-    meanlist[3] = ""
+    minlist[2] = ""
+    maxlist[2] = ""
+    meanlist[2] = ""
 with open('F:\Things\Programming\Ensims Coding\SimStats.csv', "wb") as csvfile: # Change file path as necessary
     writer = csv.writer(csvfile, delimiter=",")
     writer.writerow(headlist)

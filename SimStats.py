@@ -18,7 +18,7 @@ maxlist = ["Max", ""]
 meanlist = ["Mean", ""]
 headlist = []
 
-with open('F:\Things\Programming\Ensims Coding\SimResults.csv', 'rb') as csvfile:   # Change file path as necessary
+with open('run\SimResults.csv', 'rb') as csvfile:   # Change file path as necessary
     header = csv.Sniffer().has_header(csvfile.read())
     csvfile.seek(0)
     reader = list(csv.reader(csvfile))
@@ -48,7 +48,7 @@ with open('F:\Things\Programming\Ensims Coding\SimResults.csv', 'rb') as csvfile
     minlist[2] = ""
     maxlist[2] = ""
     meanlist[2] = ""
-with open('F:\Things\Programming\Ensims Coding\SimStats.csv', "wb") as csvfile: # Change file path as necessary
+with open('run\SimStats.csv', "wb") as csvfile: # Change file path as necessary
     writer = csv.writer(csvfile, delimiter=",")
     writer.writerow(headlist)
     writer.writerow(minlist)

@@ -10,6 +10,10 @@
 #-------------------------------------------------------------------------------
 
 import pandas as pd
-df = pd.read_csv("run\\SimResults.csv")
-df = df.describe()
-df.to_csv("run\\SimStatsPandas.csv")
+
+def getSimStats(ifile, ofile):
+    df = pd.read_csv(ifile)
+    df = df.describe()
+    df.to_csv(ofile)
+
+getSimStats(sys.argv[1], sys.argv[2])

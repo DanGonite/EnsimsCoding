@@ -7,7 +7,6 @@ def getSimStats(ifile, ofile):
         if column!= "#":
             col.append(column)
     df = df[col]
-    print df
     df.describe().to_csv(ofile)
 
 ##getSimStats(sys.argv[1], sys.argv[2])

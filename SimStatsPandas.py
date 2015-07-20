@@ -16,5 +16,4 @@ def getSimStats(ifile, ofile):
     df.insert(0, "Job_ID", "")
     df.to_csv(ofile)
 
-##getSimStats(sys.argv[1], sys.argv[2])
-getSimStats("run/SimResults.csv", "run/SimStatsPandas.csv")
+getSimStats(sys.argv[1], sys.argv[2])

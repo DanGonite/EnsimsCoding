@@ -1,12 +1,7 @@
 import pandas as pd, sys
 
 def getSimStats(ifile, ofile):
-    df = pd.read_csv(ifile)
-    col = []
-    for column in df:
-        if column!= "#":
-            col.append(column)
-    df = df[col].describe()
+    df = pd.read_csv(ifile).describe().drop('#', 1)
     df.insert(0, "Time/Date", "")
     df.insert(0, "Job_ID", "")
     df.to_csv(ofile)

@@ -1,4 +1,4 @@
-import matplotlib.pyplot as plt, pandas as pd, sys
+import matplotlib.pyplot as plt, pandas as pd, sys, math
 
 def Hist(ifile):
     plt.close("all")
@@ -12,8 +12,10 @@ def Hist(ifile):
                 maxlist.append(float(dflist[item][val]))
             except ValueError:
                 pass
+    subsizex = int(math.sqrt(len(df.columns)))
+    subsizey = int(math.sqrt(len(df.columns)))
     for column in df.columns:
-        plt.subplot(4,4,i+1)
+        plt.subplot(subsizex, subsizey,i+1)
         x = []
         x.append(df[[column]])
         plt.hist(x)

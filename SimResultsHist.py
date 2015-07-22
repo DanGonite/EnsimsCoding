@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt, pandas as pd, sys
 
 def Hist(ifile):
     plt.close("all")
-    df = pd.read_csv("run/SimResults.csv")
+    df = pd.read_csv(ifile)
     df = df.ix[:, 3:]
     dflist = pd.DataFrame.to_dict(df)
     i = 0

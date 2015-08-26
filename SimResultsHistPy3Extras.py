@@ -17,4 +17,4 @@ def Hist(ifile, ofolder):
         x += 1
 
 # Hist(sys.argv[1], sys.argv[2])
-Hist("C:/Users/Jurong/EnsimsCoding/run/SimResults.csv", "C:/Users/Jurong/EnsimsCoding/run")
+Hist("run/SimResults.csv", "run")

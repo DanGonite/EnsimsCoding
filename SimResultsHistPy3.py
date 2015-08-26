@@ -6,4 +6,5 @@ def Hist(ifile):
     df.hist(color="k", alpha=0.5, bins=np.arange(0,(size*1000),200), normed=False, sharex=True, sharey=True, figsize=(14.2,8), layout=(size,size))
     plt.show()
 
-Hist(sys.argv[1])
+#Hist(sys.argv[1])
+Hist('run/SimResults.csv')

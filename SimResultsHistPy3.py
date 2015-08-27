@@ -7,5 +7,10 @@ def Hist(ifile):
     plt.show()
     
 
+<<<<<<< HEAD
 # Hist(sys.argv[1])
 Hist("C:/Users/Jurong/EnsimsCoding/run/SimResults.csv")
+=======
+#Hist(sys.argv[1])
+Hist('run/SimResults.csv')
+>>>>>>> 4825cf96d99691453313518fca3cae35fe840270

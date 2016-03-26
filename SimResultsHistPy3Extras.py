@@ -23,6 +23,8 @@ def Hist(ifile, ofolder):
         axs.set_title(filename2)
         axs.figure.savefig(ofolder+"/"+filename2+".png", format="png")
         x += 1
+    plt.show()
 
 # Hist(sys.argv[1], sys.argv[2])
-Hist("run/SimResults.csv", "run")
+# Hist("C:/Users/Jurong/EnsimsCoding/run/SimResults.csv", "run")
+Hist("D:/USB/Things/Programming/EnsimsCoding/run/SimResults.csv", "D:/USB/Things/Programming/EnsimsCoding/run")

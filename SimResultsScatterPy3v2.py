@@ -21,4 +21,6 @@ def createScatter(ifile1, col1, ifile2, col2, ofolder):
 
     plt.show()
 
-createScatter("D:/USB/Total Backup/Things/Programming/EnsimsCoding/run/AllCombinedResults.csv", "c2: Heating:DistrictHeating [J](RunPeriod)", "D:/USB/Total Backup/Things/Programming/EnsimsCoding/run/AllDerivedResults.csv", "t2: Cooling [kWh]", "D:/USB/Total Backup/Things/Programming/EnsimsCoding/run")
+##createScatter("D:/USB/Total Backup/Things/Programming/EnsimsCoding/run/AllCombinedResults.csv", "@@orientation@@", "D:/USB/Total Backup/Things/Programming/EnsimsCoding/run/AllDerivedResults.csv", "t2: Cooling [kWh]", "D:/USB/Total Backup/Things/Programming/EnsimsCoding/run")
+
+createScatter(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])

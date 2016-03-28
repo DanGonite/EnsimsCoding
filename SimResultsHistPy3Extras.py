@@ -25,6 +25,6 @@ def Hist(ifile, ofolder):
         x += 1
     plt.show()
 
-# Hist(sys.argv[1], sys.argv[2])
-# Hist("C:/Users/Jurong/EnsimsCoding/run/SimResults.csv", "run")
-Hist("D:/USB/Things/Programming/EnsimsCoding/run/SimResults.csv", "D:/USB/Things/Programming/EnsimsCoding/run")
+Hist(sys.argv[1], sys.argv[2])
+##Hist("C:/Users/Jurong/EnsimsCoding/run/SimResults.csv", "run")
+##Hist("I:/USB/Total Backup/Things/Programming/EnsimsCoding/run/SimResults.csv", "I:/USB/Total Backup/Things/Programming/EnsimsCoding/run")

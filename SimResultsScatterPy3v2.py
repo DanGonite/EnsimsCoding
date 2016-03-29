@@ -4,7 +4,7 @@ def createScatter(ifile1, col1, ifile2, col2, ofolder):
     df1 = pd.read_csv(ifile1)
     df2 = pd.read_csv(ifile2)
     f, ax = plt.subplots()
-
+    print(df1)
     df3 = df1[col1]
     df4 = df2[col2]
 
@@ -21,6 +21,6 @@ def createScatter(ifile1, col1, ifile2, col2, ofolder):
 
     plt.show()
 
-##createScatter("D:/USB/Total Backup/Things/Programming/EnsimsCoding/run/AllCombinedResults.csv", "@@orientation@@", "D:/USB/Total Backup/Things/Programming/EnsimsCoding/run/AllDerivedResults.csv", "t2: Cooling [kWh]", "D:/USB/Total Backup/Things/Programming/EnsimsCoding/run")
+createScatter("D:/USB/Total Backup/Things/Programming/EnsimsCoding/run/AllCombinedResults.csv", "c1: InteriorEquipment:Electricity [J](RunPeriod)", "D:/USB/Total Backup/Things/Programming/EnsimsCoding/run/AllDerivedResults.csv", "t2: Cooling [kWh]", "D:/USB/Total Backup/Things/Programming/EnsimsCoding/run")
 
-createScatter(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])
+##createScatter(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])

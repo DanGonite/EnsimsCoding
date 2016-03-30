@@ -6,9 +6,13 @@ def createScatter(ifile1, col1, ifile2, col2, ofolder):
     f, ax = plt.subplots()
     df3 = df1[col1]
     df4 = df2[col2]
+    print (type(df3))
 
     i = 0
     for item in df3:
+        print (df3[i])
+        print (df4[i])
+        print ("")
         ax.scatter(df3[i], df4[i])
         i += 1
 

@@ -1,12 +1,11 @@
-import numpy as np, pandas as pd, matplotlib.pyplot as plt
+import numpy as np, pandas as pd, matplotlib.pyplot as plt, sys
 
 def indexSelection(ifile1, ifile2):
     df1 = pd.read_csv(ifile1, skipinitialspace=True)
     df2 = pd.read_csv(ifile2, skipinitialspace=True)
     del df1["#"]
     del df2["#"]
-    df1 = df1.sort(["Job_ID"], ascending=[True])
-    df2 = df2.sort(["Job_ID"], ascending=[True])
+    df1, df2 = df1.sort(["Job_ID"], ascending=[True]), df2.sort(["Job_ID"], ascending=[True])
     del df2["Job_ID"]
     global total
     total = pd.concat([df1,df2]).dropna(axis=1, how="all")

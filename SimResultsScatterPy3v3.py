@@ -19,9 +19,6 @@ def indexSelection(ifile1, ifile2):
     for item in headers:
         print(item, headers[item])
     total = pd.concat([df1,df2], axis=1)
-    df1.to_csv("D:/USB/Total Backup/Things/Programming/EnsimsCoding/run/df1CSV.csv")
-    df2.to_csv("D:/USB/Total Backup/Things/Programming/EnsimsCoding/run/df2CSV.csv")
-    total.to_csv("D:/USB/Total Backup/Things/Programming/EnsimsCoding/run/TestCSV.csv")
 
 def createScatter(col1, col2, ofolder):
     val1 = headers[col1]

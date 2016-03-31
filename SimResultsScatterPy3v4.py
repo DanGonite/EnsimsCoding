@@ -6,11 +6,11 @@ def indexSelection(ifile1, ifile2):
     df2 = pd.read_csv(ifile2, skipinitialspace=True)
     for i in range(2):
         i += 1
-        del locals()["df"+str(i)]["#"]
+        del locals()["df" + str(i)]["#"]
         locals()["df"+str(i)] = locals()["df"+str(i)].sort(["Job_ID"], ascending=[True])
     del df2["Job_ID"]
     global total
-    total = pd.concat([df1,df2]).dropna(axis=1, how="all")
+    total = pd.concat([df1, df2]).dropna(axis=1, how="all")
     global headers
     # Creates list of headers #
     headers = {}
@@ -20,7 +20,7 @@ def indexSelection(ifile1, ifile2):
         i += 1
     for item in headers:
         print(item, headers[item])
-    total = pd.concat([df1,df2], axis=1)
+    total = pd.concat([df1, df2], axis=1)
 
 def createScatter(col1, col2, ofolder):
     df1 = total[headers[col1]]
@@ -37,9 +37,15 @@ def createScatter(col1, col2, ofolder):
     # Formats and saves graphs #
     fname = (headers[col1] + " - " + headers[col2]).replace(":", "")
     ax.set_xlabel(headers[col1]); ax.set_ylabel(headers[col2])
-    ax.figure.savefig(ofolder+"/"+fname+".png", format="png")
+    try:
+        ax.figure.savefig(ofolder + "/" + fname + ".png", format = "png")
+    except IOError:
+        ofile = input("The previous path was invalid, please enter a new path:")
+        createScatter(col1, col2, ofile)
     plt.show()
 
 indexSelection("D:/USB/Total Backup/Things/Programming/EnsimsCoding/run/AllCombinedResults.csv", "D:/USB/Total Backup/Things/Programming/EnsimsCoding/run/AllDerivedResults.csv")
-##createScatter(21, 22, "D:/USB/Total Backup/Things/Programming/EnsimsCoding/run")
-createScatter(sys.argv[1], sys.argv[2], sys.argv[3])
+xCol = input("Please choose a column:")
+yCol = input("Please choose the column that you would like to plot the first column against:")
+ofile = input("Please enter a path to the folder in which you would like to save your graph:")
+createScatter(int(xCol), int(yCol), ofile)

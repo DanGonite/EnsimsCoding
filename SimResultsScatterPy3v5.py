@@ -85,6 +85,7 @@ def createCatScatter(xCol, yCol, ofolder):
     df1 = df1.sort_index()
     cat = df1.index.tolist()
     cat.insert(0, "")
+    cat.append("")
     f, ax = plt.subplots()
     i=0
     for item in total[headers[xCol]]:

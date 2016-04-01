@@ -7,4 +7,4 @@ def Hist(ifile):
     plt.show()
     
 #Hist(sys.argv[1])
-Hist('run/SimResults.csv')
+Hist('D:/USB/Total Backup/Things/Programming/EnsimsCoding/run/SimResults.csv')

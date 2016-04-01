@@ -11,6 +11,10 @@ def indexSelection(ifile1, ifile2):
     del df2["Job_ID"]
     global total
     total = pd.concat([df1, df2]).dropna(axis=1, how="all")
+##    print(total)
+##    for item in total:
+##        total = total[total[item].apply(lambda x: type(x) in [int, np.int64, float, np.float64])]
+##    print(total)
     global headers
     # Creates list of headers #
     headers = {}
@@ -23,16 +27,18 @@ def indexSelection(ifile1, ifile2):
     total = pd.concat([df1, df2], axis=1)
 
 def createScatter(col1, col2, ofolder):
-    df1 = total[headers[col1]]
-    df2 = total[headers[col2]]
+    try:
+        df1 = total[headers[col1]]
+        df2 = total[headers[col2]]
+    except KeyError:
+        xCol = input("One of your colums was invalid, please select a valid column:")
+        yCol = input("Please choose a valid column that you would like to plot the first column against:")
+        createScatter(int(xCol), int(yCol), ofolder)
     # Creates graphs #
     f, ax = plt.subplots()
     i = 0
     for item in df1:
-        try:
-            ax.scatter(df1[i], df2[i])
-        except KeyError:
-            break
+        ax.scatter(df1[i], df2[i])
         i += 1
     # Formats and saves graphs #
     fname = (headers[col1] + " - " + headers[col2]).replace(":", "")

@@ -31,10 +31,15 @@ def createScatter(col1, col2, ofolder):
         except KeyError:
             break
         i += 1
+
+    fname = (headers[col1] + " - " + headers[col2]).replace(":", "")
+    ax.set_xlabel(headers[col1]); ax.set_ylabel(headers[col2])
+    ax.figure.savefig(ofolder+"/"+fname+".png", format="png")
+
     plt.show()
 
-indexSelection("D:/USB/Total Backup/Things/Programming/EnsimsCoding/run/AllCombinedResults.csv", "D:/USB/Total Backup/Things/Programming/EnsimsCoding/run/AllDerivedResults.csv")
-createScatter(21, 22, "D:/USB/Total Backup/Things/Programming/EnsimsCoding/run")
+##indexSelection("D:/USB/Total Backup/Things/Programming/EnsimsCoding/run/AllCombinedResults.csv", "D:/USB/Total Backup/Things/Programming/EnsimsCoding/run/AllDerivedResults.csv")
+##createScatter(21, 22, "D:/USB/Total Backup/Things/Programming/EnsimsCoding/run")
 
-#indexSelection(sys.argv[1], sys.argv[2])
-#createScatter(sys.argv[1], sys.argv[2], sys.argv[3])
+indexSelection(sys.argv[1], sys.argv[2])
+createScatter(sys.argv[1], sys.argv[2], sys.argv[3])

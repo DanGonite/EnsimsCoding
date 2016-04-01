@@ -25,21 +25,9 @@ def indexSelection(ifile1, ifile2):
 def checkCategorical(xCol, yCol):
     head1 = headers[xCol]
     head2 = headers[yCol]
-    if "@@" not in head1:
-        if "@@" not in head2:
-            if "WeatherFile" not in head1:
-                if "WeatherFile" not in head2:
-                    if "ModelFile" not in head1:
-                        if "ModelFile" not in head2:
-                            createScatter(xCol, yCol, ofile)
-                        else:
-                            createCatScatter(yCol, xCol, ofile)
-                    else:
-                        createCatScatter(xCol, yCol, ofile)
-                else:
-                    createCatScatter(yCol, xCol, ofile)
-            else:
-                createCatScatter(xCol, yCol, ofile)
+    if "@@" not in head1 and "File" not in head1:
+        if "@@" not in head2 and "File" not in head2:
+            createScatter(xCol, yCol, ofile)
         else:
             createCatScatter(yCol, xCol, ofile)
     else:

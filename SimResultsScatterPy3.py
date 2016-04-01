@@ -7,15 +7,10 @@ def indexSelection(ifile1, ifile2):
     for i in range(2):
         i += 1
         del locals()["df" + str(i)]["#"]
-        locals()["df"+str(i)] = locals()["df"+str(i)].sort(["Job_ID"], ascending=[True])
+        locals()["df"+str(i)] = locals()["df"+str(i)].sort(["Job_ID"])
     del df2["Job_ID"]
-    global total
+    global total, headers
     total = pd.concat([df1, df2]).dropna(axis=1, how="all")
-##    print(total)
-##    for item in total:
-##        total = total[total[item].apply(lambda x: type(x) in [int, np.int64, float, np.float64])]
-##    print(total)
-    global headers
     # Creates list of headers #
     headers = {}
     i = 0
@@ -26,32 +21,78 @@ def indexSelection(ifile1, ifile2):
         print(item, headers[item])
     total = pd.concat([df1, df2], axis=1)
 
-def createScatter(col1, col2, ofolder):
+def checkCategorical(xCol, yCol):
     try:
-        df1 = total[headers[col1]]
-        df2 = total[headers[col2]]
+        head1 = headers[xCol]
+        head2 = headers[yCol]
     except KeyError:
-        xCol = input("One of your colums was invalid, please select a valid column:")
-        yCol = input("Please choose a valid column that you would like to plot the first column against:")
-        createScatter(int(xCol), int(yCol), ofolder)
+        xCol = input("One of your colums was invalid, please select a valid column: ")
+        yCol = input("Please choose a valid column that you would like to plot the first column against: ")
+        checkCategorical(int(xCol), int(yCol))
+    global fname
+    fname = (headers[xCol] + " - " + headers[yCol]).replace(":", "")
+    if "@@" not in head1 and "File" not in head1:
+        if "@@" not in head2 and "File" not in head2:
+            createScatter(xCol, yCol)
+        else:
+            createCatScatter(yCol, xCol)
+    else:
+        createCatScatter(xCol, yCol)
+
+    #try:
+    #    df1 = total[headers[xCol]]
+    #    df2 = total[headers[yCol]]
+    #except KeyError:
+    #    xCol = input("One of your colums was invalid, please select a valid column:")
+    #    yCol = input("Please choose a valid column that you would like to plot the first column against:")
+    #    checkCategorical(int(xCol), int(yCol))
+    #df1 = df1.value_counts()
+    #df2 = df2.value_counts()
+    #if df1.value_counts()[df1.value_counts() == 1].empty == False:
+    #    if df2.value_counts()[df2.value_counts() == 1].empty == False:
+    #        createScatter(xCol, yCol, ofile)
+    #    else:
+    #        createCatScatter(yCol, xCol, ofile)
+    #else:
+    #    createCatScatter(xCol, yCol, ofile)
+
+def createScatter(xCol, yCol):
+    df1 = total[headers[xCol]]
+    df2 = total[headers[yCol]]
     # Creates graphs #
-    f, ax = plt.subplots()
     i = 0
     for item in df1:
         ax.scatter(df1[i], df2[i])
         i += 1
     # Formats and saves graphs #
-    fname = (headers[col1] + " - " + headers[col2]).replace(":", "")
-    ax.set_xlabel(headers[col1]); ax.set_ylabel(headers[col2])
+    ax.set_xlabel(headers[xCol]); ax.set_ylabel(headers[yCol])
+    saveFig(ofile)
+
+def createCatScatter(xCol, yCol):
+    df1 = total[headers[xCol]].value_counts().sort_index()
+    df2 = total[headers[yCol]]
+    cat = df1.index.tolist()
+    cat.insert(0, "")
+    cat.append("")
+    i=0
+    for item in total[headers[xCol]]:
+        ax.scatter((cat.index(item)), total[headers[yCol]][i])
+        i+=1
+    plt.xticks(np.arange(len(cat)), cat)
+    ax.set_xlabel(headers[xCol]); ax.set_ylabel(headers[yCol])
+    saveFig(ofile)
+
+def saveFig(ofolder):
     try:
         ax.figure.savefig(ofolder + "/" + fname + ".png", format = "png")
     except IOError:
-        ofile = input("The previous path was invalid, please enter a new path:")
-        createScatter(col1, col2, ofile)
-    plt.show()
+        ofile = input("The previous path was invalid, please enter a new path: ")
+        saveFig(ofile)
 
+f, ax = plt.subplots()
 indexSelection("D:/USB/Total Backup/Things/Programming/EnsimsCoding/run/AllCombinedResults.csv", "D:/USB/Total Backup/Things/Programming/EnsimsCoding/run/AllDerivedResults.csv")
-xCol = input("Please choose a column:")
-yCol = input("Please choose the column that you would like to plot the first column against:")
-ofile = input("Please enter a path to the folder in which you would like to save your graph:")
-createScatter(int(xCol), int(yCol), ofile)
+xCol = input("Please choose a column: ")
+yCol = input("Please choose the column that you would like to plot the first column against: ")
+ofile = input("Please enter a path to the folder in which you would like to save your graph: ")
+checkCategorical(int(xCol), int(yCol))
+plt.show()

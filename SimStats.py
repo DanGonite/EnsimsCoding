@@ -11,7 +11,7 @@ def getSimStats(ifile, ofile):
         reader = list(csv.reader(csvfile))  # Reads the file as a list
         for item in reader[0]:  # Loops through items in the first row (header) of the file
             headlist.append(item)   # Creates the Header row
-    	y = len(headlist)  # Calculates the number of columns
+        y = len(headlist)  # Calculates the number of columns
         for n in range(y):  # Loops through columns in the file
             value = []  # Resets "Value" list to empty
             for row in reader:  # Loops through rows in the file
@@ -30,7 +30,7 @@ def getSimStats(ifile, ofile):
                 meanlist.append(mean)   # Adds "mean" to the list of means
                 sumsq = 0   # Sets "sumsq" to 0
                 for i in range(len(value)):     # Loops through numbers until it gets to the length of "value"
-                	sumsq += (value[i] - mean) **2     # Adds the square of the difference between the "i"th value of value and the mean of value to "sumsq"
+                    sumsq += (value[i] - mean) **2     # Adds the square of the difference between the "i"th value of value and the mean of value to "sumsq"
                 stddevlist.append(math.sqrt(sumsq/(len(value)-1)))  # Adds the square root of "sumsq" divided by the length of "value" minus 1 to "stddevlist"
             except ValueError:  # Checks for an error
                 pass

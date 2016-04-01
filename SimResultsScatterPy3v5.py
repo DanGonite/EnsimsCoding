@@ -27,11 +27,24 @@ def checkCategorical(xCol, yCol):
     head2 = headers[yCol]
     if "@@" not in head1:
         if "@@" not in head2:
-            createScatter(xCol, yCol, ofile)
+            if "WeatherFile" not in head1:
+                if "WeatherFile" not in head2:
+                    if "ModelFile" not in head1:
+                        if "ModelFile" not in head2:
+                            createScatter(xCol, yCol, ofile)
+                        else:
+                            createCatScatter(yCol, xCol, ofile)
+                    else:
+                        createCatScatter(xCol, yCol, ofile)
+                else:
+                    createCatScatter(yCol, xCol, ofile)
+            else:
+                createCatScatter(xCol, yCol, ofile)
         else:
             createCatScatter(yCol, xCol, ofile)
     else:
         createCatScatter(xCol, yCol, ofile)
+        
     #try:
     #    df1 = total[headers[xCol]]
     #    df2 = total[headers[yCol]]
